@@ -10,6 +10,7 @@ Based on this [project tutorial](https://camillovisini.com/article/create-macos-
 ```
 pip3 install -U py2app
 pip3 install -U rumps
+pip3 install chime
 ```
 
 ### To run locally
