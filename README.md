@@ -7,12 +7,19 @@ Based on this [project tutorial](https://camillovisini.com/article/create-macos-
 ## Useful Commands
 
 ### Install dependencies
-`pip3 install -U py2app`
-`pip3 install -U rumps`
+```
+pip3 install -U py2app
+pip3 install -U rumps
+```
 
 ### To run locally
-`python3 pomodoro.py`
+```
+python3 pomodoro.py
+```
 
 ### To bundle
-`python3 setup.py py2app`
+```
+python3 setup.py py2app
+```
+
 App will appear in `dist` folder.
