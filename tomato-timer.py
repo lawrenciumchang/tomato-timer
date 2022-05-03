@@ -9,7 +9,7 @@ class TomatoTimer(object):
       "start_10": "Start 10 Minute Timer",
       "start_5": "Start 5 Minute Timer",
       "pause": "Pause Timer",
-      "continue": "Continue Timer",
+      "resume": "Resume Timer",
       "stop": "Stop Timer",
       "break_message": "Time is up! Take a break! 😁",
       "25_min_interval": 1500,
@@ -50,7 +50,7 @@ class TomatoTimer(object):
       rumps.notification(title=self.config['app_name'], subtitle=self.config['break_message'], message='')
       self.reset_menu()
       self.stop_button.set_callback(None)
-      self.reset_pause_continue_button()
+      self.reset_pause_resume_button()
       self.enable_all_start_timers()
     else:
       self.stop_button.set_callback(self.stop_timer)
@@ -69,12 +69,12 @@ class TomatoTimer(object):
     self.start_10_min_button.set_callback(None)
     self.start_5_min_button.set_callback(None)
 
-  # Enable pause/continue button
-  def enable_pause_continue_button(self):
-    self.pause_button.set_callback(self.pause_continue_timer)
+  # Enable pause/resume button
+  def enable_pause_resume_button(self):
+    self.pause_button.set_callback(self.pause_resume_timer)
 
-  # Reset pause/continue button
-  def reset_pause_continue_button(self):
+  # Reset pause/resume button
+  def reset_pause_resume_button(self):
     self.pause_button.title = self.config['pause']
     self.pause_button.set_callback(None)
 
@@ -83,7 +83,7 @@ class TomatoTimer(object):
     self.timer.count = 0
     self.timer.end = self.config['25_min_interval']
     self.disable_all_start_timers()
-    self.enable_pause_continue_button()
+    self.enable_pause_resume_button()
     self.timer.start()
 
   # Start 10 Minute Timer
@@ -91,7 +91,7 @@ class TomatoTimer(object):
     self.timer.count = 0
     self.timer.end = self.config['10_min_interval']
     self.disable_all_start_timers()
-    self.enable_pause_continue_button()
+    self.enable_pause_resume_button()
     self.timer.start()
 
   # Start 5 Minute Timer
@@ -99,25 +99,26 @@ class TomatoTimer(object):
     self.timer.count = 0
     self.timer.end = self.config['5_min_interval']
     self.disable_all_start_timers()
-    self.enable_pause_continue_button()
+    self.enable_pause_resume_button()
     self.timer.start()
 
-  # Pause / Continue Timer
-  def pause_continue_timer(self, sender):
-    # Continue
-    if sender.title.lower().startswith('continue'):
+  # Pause / Resume Timer
+  def pause_resume_timer(self, sender):
+    # Resume
+    if sender.title.lower().startswith('resume'):
       sender.title = self.config['pause']
       self.timer.start()
     # Pause
     else:
-      sender.title = self.config['continue']
+      sender.title = self.config['resume']
       self.timer.stop()
+      self.app.title = '[🍅 PAUSED]'
 
   # Stop Timer
   def stop_timer(self, sender):
     self.reset_menu()
     self.stop_button.set_callback(None)
-    self.reset_pause_continue_button()
+    self.reset_pause_resume_button()
     self.enable_all_start_timers()
 
   def run(self):
