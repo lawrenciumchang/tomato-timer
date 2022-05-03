@@ -1,4 +1,5 @@
 import rumps
+import chime
 
 class TomatoTimer(object):
   def __init__(self):
@@ -43,6 +44,9 @@ class TomatoTimer(object):
     mins = time_left // 60 if time_left >= 0 else time_left // 60 + 1
     secs = time_left % 60 if time_left >= 0 else (-1 * time_left) % 60
     if mins == 0 and time_left < 0:
+      chime.theme('material')
+      chime.success()
+      chime.info()
       rumps.notification(title=self.config['app_name'], subtitle=self.config['break_message'], message='')
       self.reset_menu()
       self.stop_button.set_callback(None)
