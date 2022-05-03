@@ -14,7 +14,7 @@ pip3 install -U rumps
 
 ### To run locally
 ```
-python3 pomodoro.py
+python3 tomato-timer.py
 ```
 
 ### To bundle
