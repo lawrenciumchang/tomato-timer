@@ -4,7 +4,7 @@ Mac menu-bar application that tells you when to stop working.
 
 Based on this [project tutorial](https://camillovisini.com/article/create-macos-menu-bar-app-pomodoro/).
 
-## Useful Commands
+## Useful Commands for Development
 
 ### Install dependencies
 ```
@@ -20,7 +20,7 @@ python3 tomato-timer.py
 
 ### To bundle
 ```
-python3 setup.py py2app
+python3 bundle.py py2app -A
 ```
 
 App will appear in `dist` folder.
